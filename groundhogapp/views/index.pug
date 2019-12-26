@@ -1,0 +1,11 @@
+extends layout
+
+block content
+  h1= title
+  p Welcome to #{title}
+  form(name="add-estimation", method="post", action='/weather')
+        div.input
+            span.label City
+            input(type="text", name="city")
+        div.actions
+            input(type="submit", value="add")
