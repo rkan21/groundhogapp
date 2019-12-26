@@ -16,13 +16,12 @@ sudo apt -y install git
 sudo rm /etc/nginx/sites-enabled/default 
 git clone https://github.com/canzig21/groundhogapp.git
 sudo mv groundhogapp/groundhogapp /var/
-sudo cd /var/groundhogapp
+cd /var/groundhogapp
 sudo npm install
 sudo npm install pm2@latest -g
 sudo pm2 start bin/www
 sudo pm2 startup systemd
 sudo pm2 save
-sudo rm /etc/nginx/sites-enabled/default
 sudo cp /var/groundhogapp/nginx_conf.conf /etc/nginx/conf.d/nginx_conf.conf
 #need to reboot nginx
 sudo nginx -s reload
