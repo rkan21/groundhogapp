@@ -1,0 +1,36 @@
+{
+	"variables": {
+		"aws_access_key": "AKIAVDXJ33NBBYO7E4BM",
+		"aws_secret_key": "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"
+	},
+	"builders": [{
+		"type": "amazon-ebs",
+		"access_key": "{{user `aws_access_key`}}",
+		"secret_key": "{{user `aws_secret_key`}}",
+		"region": "us-east-1",
+		"source_ami_filter": {
+            "filters": {
+                "virtualization-type": "hvm",
+                "name": "ubuntu/images/*ubuntu-bionic-18.04-amd64-server-*",
+                "root-device-type": "ebs"
+            },
+            "owners": ["099720109477"],
+            "most_recent": true
+        },
+		"instance_type": "t2.medium",
+		"ssh_username": "ubuntu",
+		"ami_name": "GroundhogApp-{{isotime | clean_resource_name}}",
+		"ami_description": "EC2 Groundhog App",
+		"tags": {
+			"role": "groundhogapp"
+		},
+		"run_tags": {
+			"role": "production_groundhogapp"
+		}
+	}],
+	"provisioners": [{
+		"type": "shell",
+		"script": "provision.sh"
+    }]
+
+}

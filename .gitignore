@@ -102,3 +102,18 @@ dist
 
 # TernJS port file
 .tern-port
+
+###########
+#####PACKER ####
+###########
+# Cache objects
+packer_cache/
+
+# Crash log
+crash.log
+
+# For built boxes
+*.box
+###########
+#####END PACKER ####
+###########
