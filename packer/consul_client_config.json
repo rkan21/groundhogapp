@@ -1,0 +1,15 @@
+{
+	"datacenter": "east-aws",
+	"data_dir": "/opt/consul",
+	"log_level": "INFO",
+	"node_name": "foobar",
+	"server": false,
+	"connect": {
+		"enabled": true
+	},
+    "encrypt": "SixJOId24ZvZSnsPXYZk+O03+PSuHa846UXKFlvfU2s=",
+    "retry_join": [
+        "provider=aws region=us-east-1 tag_key=consul-servers tag_value=auto-join"
+    ],
+    "ui": false
+}

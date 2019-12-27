@@ -23,10 +23,16 @@ sudo pm2 start bin/www
 sudo pm2 startup systemd
 sudo pm2 save
 sudo cp /var/groundhogapp/nginx_conf.conf /etc/nginx/conf.d/nginx_conf.conf
-#need to reboot nginx
 sudo nginx -s reload
+sudo mkdir --parents /etc/consul.d
+sudo mkdir /opt/consul
+wget https://groundhog-hc-canzig-appcode.s3.amazonaws.com/consul_client_config.json
+sudo mv consul_client_config.json /etc/consul.d/
 #sudo timedatectl set-timezone Europe/Istanbul
 sudo localectl set-locale LANG=en_US.utf8
 git clone --branch v0.7.3 https://github.com/hashicorp/terraform-aws-consul.git
 terraform-aws-consul/modules/install-consul/install-consul --version 0.7.3
+sudo chown --recursive consul:consul /etc/consul.d
+terraform-aws-consul/modules/install-dnsmasq/install-dnsmasq
+sudo /etc/init.d/dnsmasq restart
 echo "Running build."
