@@ -9,11 +9,12 @@ ConditionFileNotEmpty=/etc/consul.d/consul_client_config.json
 Type=notify
 User=consul
 Group=consul
-ExecStart=/usr/local/bin/consul agent -config-dir=/etc/consul.d/
+ExecStart=/usr/local/bin/consul agent -config-dir=/etc/consul.d/ -data-dir /opt/consul
 ExecReload=/usr/local/bin/consul reload
 KillMode=process
 Restart=on-failure
 LimitNOFILE=65536
+TimeoutSec=300s
 
 [Install]
 WantedBy=multi-user.target
